@@ -1,0 +1,20 @@
+{
+	"name": "weavephp/router-aura",
+	"description": "Weave glue-framework Aura.Router Router adaptor",
+	"type": "package",
+	"version": "0.0.1",
+	"authors": [
+		{
+			"name": "Robert Goldsmith",
+			"email": "r.s.goldsmith@far-blue.co.uk"
+		}
+	],
+	"require": {
+		"aura/router": "^3.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"Weave\\Router\\Aura\\": "src/"
+		}
+	}
+}
