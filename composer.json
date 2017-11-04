@@ -1,8 +1,9 @@
 {
 	"name": "weavephp/router-aura",
 	"description": "Weave glue-framework Aura.Router Router adaptor",
-	"type": "package",
-	"version": "0.0.1",
+	"type": "weave-adaptor",
+	"keywords" : ["weave", "router", "adaptor"],
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Robert Goldsmith",
