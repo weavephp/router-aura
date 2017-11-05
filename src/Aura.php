@@ -18,14 +18,14 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	 *
 	 * @var RouterContainer
 	 */
-	protected $_routerContainer;
+	protected $routerContainer;
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct()
 	{
-		$this->_routerContainer = new RouterContainer();
+		$this->routerContainer = new RouterContainer();
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	 */
 	public function configureRoutes(callable $routeProvider)
 	{
-		$routeProvider($this->_routerContainer->getMap());
+		$routeProvider($this->routerContainer->getMap());
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	 */
 	public function route(Request $request)
 	{
-		$matcher = $this->_routerContainer->getMatcher();
+		$matcher = $this->routerContainer->getMatcher();
 		$route = $matcher->match($request);
 		if (!$route) {
 			return false;
