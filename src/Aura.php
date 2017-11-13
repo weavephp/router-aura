@@ -45,11 +45,11 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	/**
 	 * Route the supplied request.
 	 *
-	 * @param Request $request The PSR7 request to attempt to route.
+	 * @param Request &$request The PSR7 request to attempt to route.
 	 *
-	 * @return false|array[Request, string|callable]
+	 * @return false|string|callable
 	 */
-	public function route(Request $request)
+	public function route(Request &$request)
 	{
 		$matcher = $this->routerContainer->getMatcher();
 		$route = $matcher->match($request);
@@ -62,6 +62,6 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 		}
 		$request = $request->withAttribute('route.name', $route->name);
 
-		return [$request, $route->handler];
+		return $route->handler;
 	}
 }

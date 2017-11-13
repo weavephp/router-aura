@@ -11,7 +11,8 @@
 		}
 	],
 	"require": {
-		"aura/router": "^3.1"
+		"aura/router": "^3.1",
+		"weavephp/weave": "^0.0.7"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.0"
