@@ -56,6 +56,9 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 			return false;
 		}
 
+		foreach ($route->extras as $key => $val) {
+			$request = $request->withAttribute($key, $val);
+		}
 		foreach ($route->attributes as $key => $val) {
 			$request = $request->withAttribute($key, $val);
 		}
