@@ -6,6 +6,7 @@ namespace Weave\Router\Aura;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Aura\Router\RouterContainer;
+use Psr\Log\LoggerInterface;
 
 /**
  * Weave Router Adaptor for Aura.Router.
@@ -21,10 +22,24 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 
 	/**
 	 * Constructor.
+	 *
+	 * @param LoggerInterface $logger An optional PSR3 logger instance.
 	 */
-	public function __construct()
+	public function __construct(LoggerInterface $logger = null)
 	{
 		$this->routerContainer = new RouterContainer();
+
+		// Aura Router wants a factory for the logger but then
+		// only uses it once to create a shared logger so here
+		// we just provide a callable that fakes being a factory
+		// but which simply returns the existing provided logger.
+		if ($logger !== null) {
+			$this->routerContainer->setLoggerFactory(
+				function () use ($logger) {
+					return $logger;
+				}
+			);
+		}
 	}
 
 	/**
