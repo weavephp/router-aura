@@ -23,9 +23,9 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	/**
 	 * Constructor.
 	 *
-	 * @param LoggerInterface $logger An optional PSR3 logger instance.
+	 * @param ?LoggerInterface $logger An optional PSR3 logger instance.
 	 */
-	public function __construct(LoggerInterface $logger = null)
+	public function __construct(?LoggerInterface $logger = null)
 	{
 		$this->routerContainer = new RouterContainer();
 
@@ -49,9 +49,9 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	 *
 	 * @param callable $routeProvider The method to use to configure the routes.
 	 *
-	 * @return null
+	 * @return void
 	 */
-	public function configureRoutes(callable $routeProvider)
+	public function configureRoutes(callable $routeProvider): void
 	{
 		$routeProvider($this->routerContainer->getMap());
 	}
@@ -61,9 +61,9 @@ class Aura implements \Weave\Router\RouterAdaptorInterface
 	 *
 	 * @param Request &$request The PSR7 request to attempt to route.
 	 *
-	 * @return false|string|callable
+	 * @return false|string|callable|array
 	 */
-	public function route(Request &$request)
+	public function route(Request &$request): false|string|callable|array
 	{
 		$matcher = $this->routerContainer->getMatcher();
 		$route = $matcher->match($request);
